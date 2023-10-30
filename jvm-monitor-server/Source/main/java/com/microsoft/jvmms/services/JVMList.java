@@ -13,9 +13,9 @@ import com.microsoft.jvmms.core.JVMControlCenter;
 @Path("/jvm/list")
 public class JVMList {
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<JVM> hello() {
-        return new JVMControlCenter().list();
-    }
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<JVM> hello() {
+		return new JVMControlCenter().list();
+	}
 }
