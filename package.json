@@ -1,23 +1,10 @@
 {
-  "name": "jvm-tools",
-  "displayName": "JVM Tools",
-  "version": "0.0.3",
-  "private": true,
-  "description": "JVM Tools Accessible from within Visual Studio Code",
+  "activationEvents": [
+    "onView:jvmList"
+  ],
+  "badges": [],
   "bugs": {
     "url": "https://github.com/Microsoft/vscode-jvm-tools/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/microsoft/vscode-jvm-tools"
-  },
-  "license": "MIT",
-  "publisher": "brunoborges",
-  "main": "./out/extension.js",
-  "scripts": {
-    "compile": "tsc -p ./",
-    "vscode:prepublish": "npm run compile",
-    "watch": "tsc -watch -p ./"
   },
   "contributes": {
     "commands": [
@@ -105,20 +92,33 @@
       ]
     }
   },
-  "activationEvents": [
-    "onView:jvmList"
-  ],
+  "description": "JVM Tools Accessible from within Visual Studio Code",
   "devDependencies": {
-    "@types/glob": "^7.1.1",
-    "@types/mocha": "^7.0.2",
-    "@types/node": "^13.11.0",
-    "@types/vscode": "^1.45.0",
-    "glob": "^7.1.6",
-    "mocha": "^7.1.2",
-    "typescript": "^3.8.3",
-    "vscode-test": "^1.3.0"
+    "@types/glob": "7.1.1",
+    "@types/mocha": "7.0.2",
+    "@types/node": "13.11.0",
+    "@types/vscode": "1.45.0",
+    "glob": "7.1.6",
+    "mocha": "7.1.2",
+    "typescript": "3.8.3",
+    "vscode-test": "1.3.0"
   },
+  "displayName": "JVM Tools",
   "icon": "resources/duke-toolbox.png",
-  "badges": [],
-  "preview": false
+  "license": "MIT",
+  "main": "./out/extension.js",
+  "name": "jvm-tools",
+  "preview": false,
+  "private": true,
+  "publisher": "brunoborges",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/vscode-jvm-tools"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run compile",
+    "watch": "tsc -watch -p ./"
+  },
+  "version": "0.0.3"
 }
