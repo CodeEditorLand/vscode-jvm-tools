@@ -1,31 +1,8 @@
 {
-	"name": "jvm-tools",
-	"displayName": "JVM Tools",
-	"version": "0.0.1",
-	"private": false,
-	"description": "JVM Tools Accessible from within Visual Studio Code",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"vscode:prepublish": "npm run compile",
-		"watch": "tsc -watch -p ./"
-	},
+	"activationEvents": [
+		"onView:jvmList"
+	],
+	"badges": [],
 	"contributes": {
 		"commands": [
 			{
@@ -112,9 +89,7 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onView:jvmList"
-	],
+	"description": "JVM Tools Accessible from within Visual Studio Code",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
 		"@types/mocha": "10.0.6",
@@ -126,10 +101,16 @@
 		"typescript-esbuild": "0.4.5",
 		"vscode-test": "1.3.0"
 	},
-	"publishConfig": {
-		"access": "public"
-	},
+	"displayName": "JVM Tools",
 	"icon": "resources/duke-toolbox.png",
-	"badges": [],
-	"preview": false
+	"main": "./out/extension.js",
+	"name": "jvm-tools",
+	"preview": false,
+	"scripts": {
+		"compile": "tsc -p ./",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
+	},
+	"type": "module"
 }
