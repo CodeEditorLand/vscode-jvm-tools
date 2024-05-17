@@ -1,27 +1,7 @@
 {
 	"name": "jvm-tools",
 	"displayName": "JVM Tools",
-	"version": "0.0.1",
-	"private": false,
 	"description": "JVM Tools Accessible from within Visual Studio Code",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandJvmTools#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandJvmTools/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandJvmTools.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🛬 Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
 	"main": "./out/extension.js",
 	"scripts": {
 		"Document": "Document 'Source/**/*.ts'",
@@ -119,13 +99,9 @@
 	],
 	"devDependencies": {
 		"@playform/build": "0.0.7",
-		"@playform/document": "0.0.6",
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.10",
 		"glob": "10.3.12"
-	},
-	"publishConfig": {
-		"access": "public"
 	},
 	"icon": "resources/duke-toolbox.png",
 	"badges": [],
