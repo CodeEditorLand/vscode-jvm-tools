@@ -91,9 +91,9 @@
 	},
 	"description": "JVM Tools Accessible from within Visual Studio Code",
 	"devDependencies": {
-		"@types/glob": "^8.1.0",
-		"@types/node": "^20.14.2",
-		"glob": "^10.4.1"
+		"@types/glob": "8.1.0",
+		"@types/node": "20.14.2",
+		"glob": "10.4.1"
 	},
 	"displayName": "JVM Tools",
 	"icon": "resources/duke-toolbox.png",
