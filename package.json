@@ -1,11 +1,8 @@
 {
-	"name": "jvm-tools",
-	"displayName": "JVM Tools",
-	"description": "JVM Tools Accessible from within Visual Studio Code",
-	"main": "./out/extension.js",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onView:jvmList"
+	],
+	"badges": [],
 	"contributes": {
 		"commands": [
 			{
@@ -92,15 +89,18 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onView:jvmList"
-	],
+	"description": "JVM Tools Accessible from within Visual Studio Code",
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
 		"@types/node": "^13.11.0",
 		"glob": "^7.1.6"
 	},
+	"displayName": "JVM Tools",
 	"icon": "resources/duke-toolbox.png",
-	"badges": [],
-	"preview": false
+	"main": "./out/extension.js",
+	"name": "jvm-tools",
+	"preview": false,
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }
