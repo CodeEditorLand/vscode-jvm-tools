@@ -1,78 +1,58 @@
 {
-	"name": "jvm-tools",
-	"displayName": "JVM Tools",
-	"description": "JVM Tools Accessible from within Visual Studio Code",
-	"version": "0.0.3",
-	"publisher": "brunoborges",
-	"license": "MIT",
-	"icon": "resources/duke-toolbox.png",
-	"preview": false,
-	"private": true,
-	"repository": {
-		"url": "https://github.com/microsoft/vscode-jvm-tools",
-		"type": "git"
-	},
-	"bugs": {
-		"url": "https://github.com/Microsoft/vscode-jvm-tools/issues"
-	},
-	"keywords": [
-		"java",
-		"jvm",
-		"jdk",
-		"profile",
-		"debug"
-	],
-	"badges": [],
-	"engines": {
-		"vscode": "^1.45.0"
-	},
-	"categories": [
-		"Debuggers"
-	],
 	"activationEvents": [
 		"onView:jvmList"
 	],
-	"main": "./out/extension.js",
+	"badges": [],
 	"contributes": {
 		"commands": [
 			{
 				"command": "jvmList.refresh",
-				"title": "Refresh",
-				"icon": "$(refresh)"
+				"icon": "$(refresh)",
+				"title": "Refresh"
 			},
 			{
 				"command": "jvmList.openJConsole",
-				"title": "Open JConsole",
+				"enablement": "view == jvmList && viewItem == jvm",
 				"icon": "$(play)",
-				"enablement": "view == jvmList && viewItem == jvm"
+				"title": "Open JConsole"
 			},
 			{
 				"command": "jvmList.jfrStart",
-				"title": "Start Flight Recording",
-				"icon": "$(clock)"
+				"icon": "$(clock)",
+				"title": "Start Flight Recording"
 			},
 			{
 				"command": "jvmList.threadStackTrace",
-				"title": "Perform Thread StackTrace",
-				"enablement": "view == jvmList && viewItem == jvm"
+				"enablement": "view == jvmList && viewItem == jvm",
+				"title": "Perform Thread StackTrace"
 			}
 		],
-		"views": {
-			"debug": [
-				{
-					"id": "jvmList",
-					"name": "JVM List"
+		"configuration": {
+			"properties": {
+				"jvmtools.jfrStartOptions": {
+					"default": "duration=30s settings=profile filename=./jfr-recording.jfr",
+					"type": "string"
+				},
+				"jvmtools.logLevel": {
+					"default": "info",
+					"description": "%configuration.java.test.log.level.description%",
+					"enum": [
+						"error",
+						"info",
+						"verbose"
+					],
+					"scope": "window",
+					"type": "string"
+				},
+				"jvmtools.refreshTimeout": {
+					"default": 5,
+					"description": "Time in seconds the view will refresh the list of JVMs. (default: 5)",
+					"type": "number"
 				}
-			]
+			},
+			"title": "JVM Tools"
 		},
 		"menus": {
-			"view/title": [
-				{
-					"command": "jvmList.refresh",
-					"when": "view == jvmList",
-					"group": "navigation"
-				}
-			],
 			"view/item/context": [
 				{
 					"command": "jvmList.openJConsole",
@@ -84,60 +64,43 @@
 				},
 				{
 					"command": "jvmList.openJConsole",
-					"when": "view == jvmList && viewItem == jvm",
-					"group": "inline"
+					"group": "inline",
+					"when": "view == jvmList && viewItem == jvm"
 				},
 				{
 					"command": "jvmList.threadStackTrace",
 					"when": "view == jvmList && viewItem ==jvm"
 				}
+			],
+			"view/title": [
+				{
+					"command": "jvmList.refresh",
+					"group": "navigation",
+					"when": "view == jvmList"
+				}
 			]
 		},
-		"configuration": {
-			"title": "JVM Tools",
-			"properties": {
-				"jvmtools.refreshTimeout": {
-					"type": "number",
-					"default": 5,
-					"description": "Time in seconds the view will refresh the list of JVMs. (default: 5)"
-				},
-				"jvmtools.jfrStartOptions": {
-					"type": "string",
-					"default": "duration=30s settings=profile filename=./jfr-recording.jfr"
-				},
-				"jvmtools.logLevel": {
-					"type": "string",
-					"enum": [
-						"error",
-						"info",
-						"verbose"
-					],
-					"default": "info",
-					"description": "%configuration.java.test.log.level.description%",
-					"scope": "window"
+		"views": {
+			"debug": [
+				{
+					"id": "jvmList",
+					"name": "JVM List"
 				}
-			}
+			]
 		}
 	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
-	},
+	"description": "JVM Tools Accessible from within Visual Studio Code",
 	"devDependencies": {
-		"@types/vscode": "^1.45.0",
 		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.30.0",
-		"@typescript-eslint/eslint-plugin": "^2.30.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.1.2",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
+		"glob": "^7.1.6"
+	},
+	"displayName": "JVM Tools",
+	"icon": "resources/duke-toolbox.png",
+	"main": "./out/extension.js",
+	"name": "jvm-tools",
+	"preview": false,
+	"scripts": {
+		"compile": "tsc -p ./"
 	}
 }
