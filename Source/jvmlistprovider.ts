@@ -29,11 +29,15 @@ export class JVMListProvider implements vscode.TreeDataProvider<JVM> {
 		}
 
 		const lines = value.split(/\r?\n/);
+
 		const list: JVM[] = [];
+
 		for (let entry of lines) {
 			if (entry) {
 				const values = entry.split(" ");
+
 				const pid = parseInt(values[0]);
+
 				const app = values[1];
 
 				if (pid !== jpspid) {
@@ -42,16 +46,19 @@ export class JVMListProvider implements vscode.TreeDataProvider<JVM> {
 			}
 		}
 		list.sort((a, b) => a.pid - b.pid);
+
 		return list;
 	}
 
 	async listJVMs(): Promise<JVM[]> {
 		return new Promise(async (resolve) => {
 			const jps = cp.spawn("jps", { stdio: "pipe", detached: false });
+
 			var jpspid = jps.pid;
 
 			jps.on("error", (data) => {
 				console.error("jps error: " + data);
+
 				return [new JVM(-500, "There was an error listing the JVMs.")];
 			});
 
@@ -59,6 +66,7 @@ export class JVMListProvider implements vscode.TreeDataProvider<JVM> {
 
 			jps.stdout.on("data", (data) => {
 				let jvms = this.parseJpsOutput(data, jpspid);
+
 				if (jvms !== null) {
 					list = list.concat(jvms);
 				}

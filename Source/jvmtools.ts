@@ -58,6 +58,7 @@ export class JVMTools {
 
 	getConfig<T>(key: string): T {
 		const config = vscode.workspace.getConfiguration("jvmtools");
+
 		if (config.has(key)) {
 			return config.get<unknown>(key) as T;
 		} else {
@@ -81,6 +82,7 @@ export class JVMTools {
 			(error, stdout, stderr) => {
 				if (error) {
 					console.log(`Error executing command: ${error.message}`);
+
 					return;
 				}
 
@@ -89,11 +91,13 @@ export class JVMTools {
 					os.tmpdir(),
 					`${jvm.appname}-${new Date().toDateString()}.txt`,
 				);
+
 				var content = stdout ? stdout : stderr;
 
 				fs.writeFile(filePath, content, (error) => {
 					if (error) {
 						console.log(`Error:${error.message}`);
+
 						return;
 					}
 
