@@ -5,7 +5,9 @@ import * as vscode from "vscode";
 
 export class Timer {
 	private eventEmitter = new vscode.EventEmitter<void>();
+
 	private seconds: number;
+
 	private intervalObject: NodeJS.Timeout | undefined;
 
 	constructor(seconds: number) {
@@ -21,6 +23,7 @@ export class Timer {
 			this.eventEmitter.fire();
 		} catch (e) {
 			this.stop();
+
 			console.log(e);
 		}
 	}
@@ -36,6 +39,7 @@ export class Timer {
 	stop() {
 		if (this.intervalObject) {
 			clearInterval(this.intervalObject);
+
 			this.intervalObject = undefined;
 		}
 	}

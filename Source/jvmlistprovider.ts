@@ -6,6 +6,7 @@ import { JVM } from "./jvm";
 export class JVMListProvider implements vscode.TreeDataProvider<JVM> {
 	private _onDidChangeTreeData: vscode.EventEmitter<JVM | undefined> =
 		new vscode.EventEmitter<JVM | undefined>();
+
 	readonly onDidChangeTreeData: vscode.Event<JVM | undefined> =
 		this._onDidChangeTreeData.event;
 
@@ -45,6 +46,7 @@ export class JVMListProvider implements vscode.TreeDataProvider<JVM> {
 				}
 			}
 		}
+
 		list.sort((a, b) => a.pid - b.pid);
 
 		return list;

@@ -13,14 +13,17 @@ import { Timer } from "./timer";
 
 export class JVMTools {
 	private jvmList: vscode.TreeView<JVM>;
+
 	private refreshTimer: Timer;
 
 	constructor(context: vscode.ExtensionContext) {
 		// Register JVM List View
 		const treeDataProvider = new JVMListProvider();
+
 		this.jvmList = vscode.window.createTreeView("jvmList", {
 			treeDataProvider,
 		});
+
 		this.jvmList.onDidChangeVisibility(
 			(e) =>
 				e.visible
@@ -34,12 +37,15 @@ export class JVMTools {
 		vscode.commands.registerCommand("jvmList.refresh", () =>
 			treeDataProvider.refresh(),
 		);
+
 		vscode.commands.registerCommand("jvmList.openJConsole", (jvm: JVM) =>
 			this.openJConsole(jvm),
 		);
+
 		vscode.commands.registerCommand("jvmList.jfrStart", (jvm: JVM) =>
 			this.startJFR(jvm),
 		);
+
 		vscode.commands.registerCommand(
 			"jvmList.threadStackTrace",
 			(jvm: JVM) => this.performThreadStackTrace(jvm),
@@ -47,6 +53,7 @@ export class JVMTools {
 
 		// Start refresh timer
 		this.refreshTimer = new Timer(this.getConfig<number>("refreshTimeout"));
+
 		this.refreshTimer.onTimeElapsed(() => {
 			treeDataProvider.refresh();
 		});
@@ -72,11 +79,13 @@ export class JVMTools {
 
 	startJFR(jvm: JVM) {
 		const options = this.getConfig("jfrStartOptions");
+
 		cp.exec(`jcmd ${jvm.pid} JFR.start ${options}`);
 	}
 
 	performThreadStackTrace(jvm: JVM) {
 		const options = this.getConfig("threadDumpOptions");
+
 		cp.exec(
 			`jcmd ${jvm.pid} Thread.print ${options}`,
 			(error, stdout, stderr) => {
@@ -103,6 +112,7 @@ export class JVMTools {
 
 					// Open dump file in vscode
 					var openPath = vscode.Uri.file(filePath);
+
 					vscode.workspace.openTextDocument(openPath).then((doc) => {
 						vscode.window.showTextDocument(
 							doc,
